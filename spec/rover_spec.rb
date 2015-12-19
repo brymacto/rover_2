@@ -1,10 +1,20 @@
 require_relative '../rover'
 
 describe Rover do 
-  it 'exists' do
-    r = Rover.new
+  subject { Rover.new }
 
-    expect(r).to_not be_nil
+  it 'turns right when prompted' do
+    subject.turn('r')
+
+    expect(subject.direction).to eql('r')
   end
+
+  it 'turns left when prompted' do
+    subject.turn('l')
+
+    expect(subject.direction).to eql('l')
+  end
+
+
   
 end
