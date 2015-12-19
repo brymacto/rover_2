@@ -44,8 +44,8 @@ describe Rover do
   end
 
   describe '#status' do
-    xit 'returns the coords' do
-      result = subject.coords
+    it 'returns the coords and direction' do
+      result = subject.status
 
       expect(result).to eql({x: 1, y: 1, direction: 'e'})
     end

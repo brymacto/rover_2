@@ -19,6 +19,10 @@ class Rover
     @direction = new_direction(direction_index(direction), direction_index_rotation)
   end
 
+  def status
+    { x: @x, y: @y, direction: @direction }
+  end
+
   private
 
   def new_direction(direction_index, direction_index_rotation)
