@@ -27,6 +27,7 @@ describe Rover do
 
       expect(subject.direction).to eql('e')
     end
+    
     context 'current direction (n) is at beginning of DIRECTIONS constant' do
       it 'turns left when prompted' do
         subject.direction = 'n'
