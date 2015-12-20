@@ -25,6 +25,10 @@ class Rover
     { x: @x, y: @y, direction: @direction }
   end
 
+  def position
+    { x: @x, y: @y }
+  end
+
   def move
     set_position(next_space) if @plateau.space_available?(next_space)
   end
