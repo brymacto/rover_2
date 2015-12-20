@@ -42,9 +42,9 @@ class Rover
   end
 
   def next_space
-    axis = @moves.axis(@direction)
-    x = @x + @moves.distance(@direction, :x)
-    y = @y + @moves.distance(@direction, :y)
+    @moves.direction = @direction
+    x = @x + @moves.distance_by_axis(:x)
+    y = @y + @moves.distance_by_axis(:y)
     { x: x, y: y }
   end
 

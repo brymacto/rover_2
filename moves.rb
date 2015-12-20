@@ -6,16 +6,30 @@ class Moves
     w: { axis: :x, distance: -1 }
   }
 
-  def axis(direction)
-    MOVES_BY_DIRECTION[direction.to_sym][:axis]
+  attr_reader :direction
+
+  def initialize(direction = :e)
+    @direction = direction.to_sym
+    @axis = axis_by_direction
   end
 
-  def distance(direction, axis)
-    return 0 unless direction_and_axis_compatible?(direction, axis)
-    MOVES_BY_DIRECTION[direction.to_sym][:distance]
+  def direction=(direction)
+    @direction = direction.to_sym
+    @axis = axis_by_direction
   end
 
-  def direction_and_axis_compatible?(direction, axis)
+  def distance_by_axis(axis)
+    return 0 unless direction_on_axis?(@direction, axis)
+    MOVES_BY_DIRECTION[@direction][:distance]
+  end
+
+  private
+
+  def axis_by_direction
+    MOVES_BY_DIRECTION[@direction][:axis]
+  end
+
+  def direction_on_axis?(direction, axis)
     return true if [:e, :w].include?(direction.to_sym) && axis == :x
     return true if [:n, :s].include?(direction.to_sym) && axis == :y
     false
