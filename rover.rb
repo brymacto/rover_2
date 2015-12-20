@@ -12,6 +12,7 @@ class Rover
     @y = args.fetch(:y, 1)
     @direction = args.fetch(:direction, 'e')
     @plateau = args.fetch(:plateau, Plateau.new)
+    @moves = Moves.new
   end
 
   def turn(direction)
@@ -36,18 +37,12 @@ class Rover
   end
 
   def next_space
-    moves_by_direction = { 
-      e: { axis: :x, distance: 1 }, 
-      w: { axis: :x, distance: -1 }, 
-      n: { axis: :y, distance: 1 }, 
-      s: { axis: :y, distance: -1 } 
-    }
-    case moves_by_direction[@direction.to_sym][:axis]
+    case @moves.axis(@direction)
     when :x
-      x = @x + moves_by_direction[@direction.to_sym][:distance]
+      x = @x + @moves.distance(@direction)
       y ||= @y
     when :y
-      y = @y + moves_by_direction[@direction.to_sym][:distance]
+      y = @y + @moves.distance(@direction)
       x ||= @x
     end
     {x: x, y: y}
@@ -59,5 +54,21 @@ class Rover
 
   def direction_index(direction)
     DIRECTIONS.index(@direction)
+  end
+end
+
+class Moves
+  MOVES_BY_DIRECTION = { 
+    e: { axis: :x, distance: 1 }, 
+    w: { axis: :x, distance: -1 }, 
+    n: { axis: :y, distance: 1 }, 
+    s: { axis: :y, distance: -1 } 
+  }
+  def axis(direction)
+    return MOVES_BY_DIRECTION[direction.to_sym][:axis]
+  end
+
+  def distance(direction)
+    return MOVES_BY_DIRECTION[direction.to_sym][:distance]
   end
 end
