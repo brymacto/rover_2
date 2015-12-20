@@ -65,8 +65,6 @@ describe Rover do
         allow(subject.plateau).to receive(:space_available?) { true }
 
         expect { subject.move }.to change { subject.status[:x] }.from(1).to(2)
-
-        subject.move
       end
     end
 
