@@ -62,22 +62,22 @@ describe Rover do
     end
 
     context 'space is available' do
-      xit 'moves when prompted' do
-        allow(subject.plateau).to receive(:subject_available?) { true }
+      it 'moves when prompted' do
+        allow(subject.plateau).to receive(:space_available?) { true }
+
+        expect{ subject.move }.to change{ subject.status[:x] }.from(1).to(2)
 
         subject.move
-
-        expect{ subject.move }.to change{ subject.status[x].from(1).to(2) }
       end
     end
 
     context 'space is not available' do
-      xit 'does not move when prompted' do
-        allow(subject.plateau).to receive(:subject_available?) { false }
+      it 'does not move when prompted' do
+        allow(subject.plateau).to receive(:space_available?) { false }
 
         subject.move
 
-        expect{ subject.move }.to not_change{ subject.status }
+        expect{ subject.move }.to_not change{ subject.status }
       end
     end
   end
