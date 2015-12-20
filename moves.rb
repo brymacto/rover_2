@@ -10,12 +10,12 @@ class Moves
 
   def initialize(direction = :e)
     @direction = direction.to_sym
-    @axis = axis_by_direction
+    get_axis_by_direction
   end
 
   def direction=(direction)
     @direction = direction.to_sym
-    @axis = axis_by_direction
+    get_axis_by_direction
   end
 
   def distance_by_axis(axis)
@@ -25,8 +25,8 @@ class Moves
 
   private
 
-  def axis_by_direction
-    MOVES_BY_DIRECTION[@direction][:axis]
+  def get_axis_by_direction
+    @axis = MOVES_BY_DIRECTION[@direction][:axis]
   end
 
   def direction_on_axis?(direction, axis)
