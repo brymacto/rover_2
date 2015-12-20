@@ -1,7 +1,7 @@
 require_relative '../rover'
 
 describe Rover do 
-  subject { Rover.new({x: 1, y: 1, direction: 'e', plateau: double()}) }
+  subject { Rover.new({x: 1, y: 1, direction: 'e', plateau: double('plateau_double')}) }
 
   describe '#turn' do
     it 'turns right when prompted' do
@@ -52,13 +52,13 @@ describe Rover do
   end
 
   describe '#move' do
-    xit 'checks for availability before moving' do
-      space_x = 1
-      space_y = 2
+    it 'checks for availability before moving' do
+      new_space_x = 2
+      new_space_y = 1
+
+      expect(subject.plateau).to receive(:space_available?).with(new_space_x, new_space_y)
 
       subject.move
-
-      expect(subject.plateau).to receive(:space_available?).with(space_x, space_y)
     end
 
     context 'space is available' do
