@@ -11,7 +11,7 @@ class Rover
     @x = args.fetch(:x, 1)
     @y = args.fetch(:y, 1)
     @direction = args.fetch(:direction, 'e')
-    @plateau = args.fetch(:plateau, Plateau.new)
+    @plateau = args.fetch(:plateau, Plateau.new(30, 30, self))
     @moves = Moves.new
   end
 
@@ -22,7 +22,7 @@ class Rover
   end
 
   def status
-    { x: @x, y: @y, direction: @direction }
+    position.merge({ direction: @direction })
   end
 
   def position

@@ -17,6 +17,7 @@ describe Rover do
         subject.turn('r')
 
         expect(subject.direction).to eql('n')
+        p subject.status
       end
     end
 
