@@ -1,11 +1,11 @@
 require './moves'
 
 class Rover
-  DIRECTIONS = ['n', 'e', 's', 'w']
+  DIRECTIONS = %w(n e s w)
   DIRECTION_INDEX_ROTATIONS = { l: -1, r: 1 }
-  
+
   attr_accessor :direction, :plateau, :name
-  attr_reader :x, :y 
+  attr_reader :x, :y
 
   def initialize(args)
     @x = args.fetch(:x, 1)
@@ -17,13 +17,13 @@ class Rover
   end
 
   def turn(direction)
-    raise "Direction must be 'l' or 'r'" if direction != 'l' && direction != 'r'
+    fail "Direction must be 'l' or 'r'" if direction != 'l' && direction != 'r'
     direction_index_rotation = DIRECTION_INDEX_ROTATIONS[direction.to_sym]
     @direction = new_direction(direction_index(direction), direction_index_rotation)
   end
 
   def status
-    position.merge({ direction: @direction })
+    position.merge(direction: @direction)
   end
 
   def position
@@ -45,14 +45,14 @@ class Rover
     axis = @moves.axis(@direction)
     x = @x + @moves.distance(@direction, :x)
     y = @y + @moves.distance(@direction, :y)
-    {x: x, y: y}
+    { x: x, y: y }
   end
 
   def new_direction(direction_index, direction_index_rotation)
     DIRECTIONS.rotate(direction_index_rotation)[direction_index]
   end
 
-  def direction_index(direction)
+  def direction_index(_direction)
     DIRECTIONS.index(@direction)
   end
 end

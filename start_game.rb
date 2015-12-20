@@ -1,9 +1,9 @@
 require './game'
 
-puts "Please enter the name of Rover 1"
+puts 'Please enter the name of Rover 1'
 rover_name_1 = gets.chomp
 
-puts "Please enter the name of Rover 2"
+puts 'Please enter the name of Rover 2'
 rover_name_2 = gets.chomp
 
 puts "Please enter the plateau's X axis size (minimum 30)"

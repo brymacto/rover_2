@@ -1,7 +1,7 @@
 require_relative '../rover'
 
-describe Rover do 
-  subject { Rover.new({x: 1, y: 1, direction: 'e', plateau: double('plateau_double')}) }
+describe Rover do
+  subject { Rover.new(x: 1, y: 1, direction: 'e', plateau: double('plateau_double')) }
 
   describe '#turn' do
     it 'turns right when prompted' do
@@ -17,10 +17,8 @@ describe Rover do
         subject.turn('r')
 
         expect(subject.direction).to eql('n')
-        p subject.status
       end
     end
-
 
     it 'turns left when prompted' do
       subject.direction = 's'
@@ -48,7 +46,7 @@ describe Rover do
     it 'returns the coords and direction' do
       result = subject.status
 
-      expect(result).to eql({x: 1, y: 1, direction: 'e'})
+      expect(result).to eql(x: 1, y: 1, direction: 'e')
     end
   end
 
@@ -57,7 +55,7 @@ describe Rover do
       new_space_x = 2
       new_space_y = 1
 
-      expect(subject.plateau).to receive(:space_available?).with({ x: new_space_x, y: new_space_y })
+      expect(subject.plateau).to receive(:space_available?).with(x: new_space_x, y: new_space_y)
 
       subject.move
     end
@@ -66,7 +64,7 @@ describe Rover do
       it 'moves when prompted' do
         allow(subject.plateau).to receive(:space_available?) { true }
 
-        expect{ subject.move }.to change{ subject.status[:x] }.from(1).to(2)
+        expect { subject.move }.to change { subject.status[:x] }.from(1).to(2)
 
         subject.move
       end
@@ -78,7 +76,7 @@ describe Rover do
 
         subject.move
 
-        expect{ subject.move }.to_not change{ subject.status }
+        expect { subject.move }.to_not change { subject.status }
       end
     end
   end

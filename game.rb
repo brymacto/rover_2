@@ -3,8 +3,8 @@ require './rover'
 
 class Game
   def initialize(x_axis_input, y_axis_input, rover_name_1, rover_name_2)
-    @rover_1 = Rover.new({x: 1, y: 1, direction: 'e', name: rover_name_1 })
-    @rover_2 = Rover.new({x: 3, y: 3, direction: 'n', name: rover_name_2 })
+    @rover_1 = Rover.new(x: 1, y: 1, direction: 'e', name: rover_name_1)
+    @rover_2 = Rover.new(x: 3, y: 3, direction: 'n', name: rover_name_2)
     @rovers = [@rover_1, @rover_2]
     @plateau = Plateau.new(get_axis(x_axis_input), get_axis(y_axis_input), @rover_1, @rover_2)
     @rover_1.plateau = @plateau
@@ -24,14 +24,14 @@ class Game
     until instructions == 'q' || instructions == 'quit' || instructions == 'exit'
       @rovers.each do |rover|
         puts "Enter your instructions for #{rover.name}:"
-        puts "L, R: turn.  M: move forward. P: pass (make no move). Q: quit game. (you may enter more than one character at a time)."
+        puts 'L, R: turn.  M: move forward. P: pass (make no move). Q: quit game. (you may enter more than one character at a time).'
         instructions = gets.chomp
-        return if instructions == 'q' || instructions == 'quit' || instructions == 'exit'
+        break if instructions == 'q' || instructions == 'quit' || instructions == 'exit'
         process_instructions(instructions, rover)
         print_line
       end
     end
-    puts "Your game is over.  Final positions:"
+    puts 'Your game is over.  Final positions:'
     print_rover_statuses
   end
 
@@ -43,7 +43,7 @@ class Game
     instructions.each_with_index do |instruction, index|
       execute_instruction(instruction.downcase, index)
     end
-    puts "Instructions have been processed"
+    puts 'Instructions have been processed'
     print_line
     print_rover_statuses
   end
@@ -79,7 +79,7 @@ class Game
 
   def print_game_intro
     print_line
-    puts "GAME STARTED"
+    puts 'GAME STARTED'
     puts "Plateau X axis: 0 to #{@plateau.max_x}"
     puts "Plateau Y axis: 0 to #{@plateau.max_y}"
     puts "Rovers: #{@rover_1.name} (Rover 1), #{@rover_2.name} (Rover 2)"
@@ -88,7 +88,7 @@ class Game
   end
 
   def print_line
-    puts "*******************************"
+    puts '*******************************'
   end
 
   def print_rover_statuses
@@ -105,6 +105,6 @@ class Game
   def direction_name(direction)
     return 'left' if direction == 'l'
     return 'right' if direction == 'r'
-    raise 'invalid direction'
+    fail 'invalid direction'
   end
 end
