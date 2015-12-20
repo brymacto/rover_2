@@ -1,4 +1,4 @@
-class Moves
+class MoveCalculator
   MOVES_BY_DIRECTION = {
     n: { axis: :y, distance: 1 },
     e: { axis: :x, distance: 1 },

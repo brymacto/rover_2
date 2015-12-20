@@ -1,4 +1,4 @@
-require './moves'
+require './move_calculator'
 
 class Rover
   DIRECTIONS = %w(n e s w)
@@ -12,7 +12,7 @@ class Rover
     @y = args.fetch(:y, 1)
     @direction = args.fetch(:direction, 'e')
     @plateau = args.fetch(:plateau, Plateau.new(30, 30, self))
-    @moves = Moves.new
+    @move_calculator = MoveCalculator.new
     @name = args.fetch(:name, 'Anonymous Rover')
   end
 
@@ -42,9 +42,9 @@ class Rover
   end
 
   def next_space
-    @moves.direction = @direction
-    x = @x + @moves.distance_by_axis(:x)
-    y = @y + @moves.distance_by_axis(:y)
+    @move_calculator.direction = @direction
+    x = @x + @move_calculator.distance_by_axis(:x)
+    y = @y + @move_calculator.distance_by_axis(:y)
     { x: x, y: y }
   end
 
