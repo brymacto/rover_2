@@ -4,7 +4,7 @@ This is new version of the rover I initially completed months ago during the ear
 
 I decided to complete the assignment again, this time using TDD and refactoring techniques.
 
-Note that the priority for this second version of the project was TDD and refactoring of the rover and plateau. The game class and script (game.rb and start_game.rb) are secondary and have not been tested or refactored.
+The priority for this second version of the project was TDD and refactoring of the rover and plateau. The game class and script (game.rb and start_game.rb) are secondary and have not been tested or refactored.
 
 ## Instructions
 
@@ -13,9 +13,9 @@ Note that the priority for this second version of the project was TDD and refact
 
 ## Acceptance criteria
 
-The following acceptance criteria was used to develop the specs for the rover and plateau:
+The following acceptance criteria were used to develop the specs for the rover and plateau:
 
-Imagine a grid that looks like this:
+* Rovers are on a plateau that looks like this:
 
 ```
   _ _ _ _ _ _ _ _ _
