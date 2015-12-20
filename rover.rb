@@ -36,12 +36,20 @@ class Rover
   end
 
   def next_space
-    x = @x + 1 if @direction == 'e'
-    x = @x - 1 if @direction == 'w'
-    y = @y + 1 if @direction == 'n'
-    y = @y - 1 if @direction == 's'
-    x ||= @x
-    y ||= @y
+    moves_by_direction = { 
+      e: { axis: :x, distance: 1 }, 
+      w: { axis: :x, distance: -1 }, 
+      n: { axis: :y, distance: 1 }, 
+      s: { axis: :y, distance: -1 } 
+    }
+    case moves_by_direction[@direction.to_sym][:axis]
+    when :x
+      x = @x + moves_by_direction[@direction.to_sym][:distance]
+      y ||= @y
+    when :y
+      y = @y + moves_by_direction[@direction.to_sym][:distance]
+      x ||= @x
+    end
     {x: x, y: y}
   end
 
