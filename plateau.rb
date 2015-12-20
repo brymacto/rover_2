@@ -16,13 +16,7 @@ class Plateau
   private
 
   def space_unoccupied?(space)
-    result = true
-
-    @rovers.each do |rover|
-      result = false if rover.position == space
-    end
-
-    result
+    @rovers.none? { |rover| rover.position == space }
   end
 
   def space_on_grid?(space)
