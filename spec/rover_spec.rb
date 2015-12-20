@@ -56,7 +56,7 @@ describe Rover do
       new_space_x = 2
       new_space_y = 1
 
-      expect(subject.plateau).to receive(:space_available?).with(new_space_x, new_space_y)
+      expect(subject.plateau).to receive(:space_available?).with({ x: new_space_x, y: new_space_y })
 
       subject.move
     end

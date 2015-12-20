@@ -25,17 +25,14 @@ class Rover
   end
 
   def move
-    next_x = next_space[:x]
-    next_y = next_space[:y]
-    space_available = @plateau.space_available?(next_x, next_y)
-    set_position(next_x, next_y) if space_available
+    set_position(next_space) if @plateau.space_available?(next_space)
   end
 
   private
 
-  def set_position(x, y)
-    @x = x
-    @y = y
+  def set_position(space)
+    @x = space[:x]
+    @y = space[:y]
   end
 
   def next_space

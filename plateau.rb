@@ -1,4 +1,4 @@
 class Plateau
-  def space_available?(x, y)
+  def space_available?(space)
   end
 end
