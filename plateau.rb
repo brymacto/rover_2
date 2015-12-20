@@ -22,11 +22,14 @@ class Plateau
   end
 
   def space_on_grid?
-    result = true
-    
-    result = false if @space_being_checked[:x] < 0 || @space_being_checked[:y] < 0
-    result = false if @space_being_checked[:x] > @max_x || @space_being_checked[:y] > @max_y
+    space_on_x_axis? && space_on_y_axis?
+  end
 
-    result
+  def space_on_x_axis?
+    @space_being_checked[:x] >= 0 && @space_being_checked[:x] <= @max_x
+  end
+
+  def space_on_y_axis?
+    @space_being_checked[:y] >= 0 && @space_being_checked[:y] <= @max_y
   end
 end
