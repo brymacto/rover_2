@@ -1,4 +1,6 @@
 class Plateau
+  attr_reader :max_x, :max_y
+  
   def initialize(x_size, y_size, *rovers)
     @max_x = x_size.to_i - 1
     @max_y = y_size.to_i - 1

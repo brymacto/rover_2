@@ -4,8 +4,8 @@ class Rover
   DIRECTIONS = ['n', 'e', 's', 'w']
   DIRECTION_INDEX_ROTATIONS = { l: -1, r: 1 }
   
-  attr_accessor :direction
-  attr_reader :plateau
+  attr_accessor :direction, :plateau, :name
+  attr_reader :x, :y 
 
   def initialize(args)
     @x = args.fetch(:x, 1)
@@ -13,6 +13,7 @@ class Rover
     @direction = args.fetch(:direction, 'e')
     @plateau = args.fetch(:plateau, Plateau.new(30, 30, self))
     @moves = Moves.new
+    @name = args.fetch(:name, 'Anonymous Rover')
   end
 
   def turn(direction)
