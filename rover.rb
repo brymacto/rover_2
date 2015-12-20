@@ -37,14 +37,9 @@ class Rover
   end
 
   def next_space
-    case @moves.axis(@direction)
-    when :x
-      x = @x + @moves.distance(@direction)
-      y ||= @y
-    when :y
-      y = @y + @moves.distance(@direction)
-      x ||= @x
-    end
+    axis = @moves.axis(@direction)
+    x = @x + @moves.distance(@direction, :x)
+    y = @y + @moves.distance(@direction, :y)
     {x: x, y: y}
   end
 
@@ -64,11 +59,19 @@ class Moves
     n: { axis: :y, distance: 1 }, 
     s: { axis: :y, distance: -1 } 
   }
+  
   def axis(direction)
     return MOVES_BY_DIRECTION[direction.to_sym][:axis]
   end
 
-  def distance(direction)
+  def distance(direction, axis)
+    return 0 if !direction_and_axis_compatible?(direction, axis)
     return MOVES_BY_DIRECTION[direction.to_sym][:distance]
+  end
+
+  def direction_and_axis_compatible?(direction, axis)
+    return true if [:e, :w].include?(direction.to_sym) && axis == :x
+    return true if [:n, :s].include?(direction.to_sym) && axis == :y
+    return false
   end
 end
